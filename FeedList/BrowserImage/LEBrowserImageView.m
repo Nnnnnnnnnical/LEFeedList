@@ -1,17 +1,17 @@
 //
-//  SDBrowserImageView.m
-//  SDPhotoBrowser
+//  LEBrowserImageView.m
+//  LEPhotoBrowser
 //
 //  Created by aier on 15-2-6.
-//  Copyright (c) 2015年 GSD. All rights reserved.
+//  Copyright (c) 2015年 GLE. All rights reserved.
 //
 
-#import "SDBrowserImageView.h"
-#import "SDPhotoBrowserConfig.h"
+#import "LEBrowserImageView.h"
+#import "LEPhotoBrowserConfig.h"
 
-@implementation SDBrowserImageView
+@implementation LEBrowserImageView
 {
-    __weak SDWaitingView *_waitingView;
+    //__weak LEWaitingView *_waitingView;
     BOOL _didCheckSize;
     UIScrollView *_scroll;
     UIImageView *_scrollImageView;
@@ -33,8 +33,6 @@
         UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoomImage:)];
         pinch.delegate = self;
         [self addGestureRecognizer:pinch];
-        
-
     
     }
     return self;
@@ -48,7 +46,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    _waitingView.center = CGPointMake(self.frame.size.width * 0.5, self.frame.size.height * 0.5);
+    //_waitingView.center = CGPointMake(self.frame.size.width * 0.5, self.frame.size.height * 0.5);
     
     CGSize imageSize = self.image.size;
     
@@ -60,12 +58,9 @@
             imageView.image = self.image;
             _scrollImageView = imageView;
             [scroll addSubview:imageView];
-            scroll.backgroundColor = SDPhotoBrowserBackgrounColor;
+            scroll.backgroundColor = LEPhotoBrowserBackgrounColor;
             _scroll = scroll;
             [self addSubview:scroll];
-            if (_waitingView) {
-                [self bringSubviewToFront:_waitingView];
-            }
         }
         _scroll.frame = self.bounds;
 
@@ -81,52 +76,6 @@
     
 }
 
-
-
-- (void)setProgress:(CGFloat)progress
-{
-    _progress = progress;
-    _waitingView.progress = progress;
-
-}
-
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder
-{
-    SDWaitingView *waiting = [[SDWaitingView alloc] init];
-    waiting.bounds = CGRectMake(0, 0, 100, 100);
-    waiting.mode = SDWaitingViewProgressMode;
-    _waitingView = waiting;
-    [self addSubview:waiting];
-    
-    
-    __weak SDBrowserImageView *imageViewWeak = self;
-
-//    [self sd_setImageWithURL:url placeholderImage:placeholder options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-//        imageViewWeak.progress = (CGFloat)receivedSize / expectedSize;
-//        
-//    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        [imageViewWeak removeWaitingView];
-//        
-//        
-//        if (error) {
-//            UILabel *label = [[UILabel alloc] init];
-//            label.bounds = CGRectMake(0, 0, 160, 30);
-//            label.center = CGPointMake(imageViewWeak.bounds.size.width * 0.5, imageViewWeak.bounds.size.height * 0.5);
-//            label.text = @"图片加载失败";
-//            label.font = [UIFont systemFontOfSize:16];
-//            label.textColor = [UIColor whiteColor];
-//            label.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
-//            label.layer.cornerRadius = 5;
-//            label.clipsToBounds = YES;
-//            label.textAlignment = NSTextAlignmentCenter;
-//            [imageViewWeak addSubview:label];
-//        } else {
-//            _scrollImageView.image = image;
-//            [_scrollImageView setNeedsDisplay];
-//        }
-//   
-//    }];
-}
 
 - (void)zoomImage:(UIPinchGestureRecognizer *)recognizer
 {
@@ -160,7 +109,6 @@
         
         CGPoint offset = _zoomingScroolView.contentOffset;
         offset.x = (contentW - _zoomingScroolView.frame.size.width) * 0.5;
-//        offset.y = (contentH - _zoomingImageView.frame.size.height) * 0.5;
         _zoomingScroolView.contentOffset = offset;
         
     } else {
@@ -186,7 +134,7 @@
 {
     if (!_zoomingScroolView) {
         _zoomingScroolView = [[UIScrollView alloc] initWithFrame:self.bounds];
-        _zoomingScroolView.backgroundColor = SDPhotoBrowserBackgrounColor;
+        _zoomingScroolView.backgroundColor = LEPhotoBrowserBackgrounColor;
         _zoomingScroolView.contentSize = self.bounds.size;
         UIImageView *zoomingImageView = [[UIImageView alloc] initWithImage:self.image];
         CGSize imageSize = zoomingImageView.image.size;
@@ -223,13 +171,5 @@
     _zoomingImageView = nil;
 
 }
-
-- (void)removeWaitingView
-{
-    [_waitingView removeFromSuperview];
-}
-
-
-
 
 @end

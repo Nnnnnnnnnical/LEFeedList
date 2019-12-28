@@ -14,4 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+-(instancetype) initWithFrame:(CGRect)frame;
+
 NS_ASSUME_NONNULL_END

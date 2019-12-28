@@ -8,6 +8,13 @@
 
 #import "LECommentTableViewCell.h"
 
+@interface LECommentTableViewCell()
+
+//@property (nonatomic, strong)UIImageView
+
+@end
+
+
 @implementation LECommentTableViewCell
 
 - (void)awakeFromNib {

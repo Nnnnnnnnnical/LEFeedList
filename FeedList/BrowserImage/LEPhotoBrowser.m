@@ -1,13 +1,13 @@
 //
-//  SDPhotoBrowser.m
+//  LEPhotoBrowser.m
 //  photobrowser
 //
 //  Created by aier on 15-2-3.
 //  Copyright (c) 2015年 aier. All rights reserved.
 //
 
-#import "SDPhotoBrowser.h"
-#import "SDBrowserImageView.h"
+#import "LEPhotoBrowser.h"
+#import "LEBrowserImageView.h"
 
  
 //  ============在这里方便配置样式相关设置===========
@@ -18,16 +18,16 @@
 //                     \\//
 //                      \/
 
-#import "SDPhotoBrowserConfig.h"
+#import "LEPhotoBrowserConfig.h"
 
 //  =============================================
 
-@implementation SDPhotoBrowser 
+@implementation LEPhotoBrowser
 {
     UIScrollView *_scrollView;
     BOOL _hasShowedFistView;
     UILabel *_indexLabel;
-    UIButton *_saveButton;
+    //UIButton *_saveButton;
     UIActivityIndicatorView *_indicatorView;
     BOOL _willDisappear;
 }
@@ -36,7 +36,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = SDPhotoBrowserBackgrounColor;
+        self.backgroundColor = LEPhotoBrowserBackgrounColor;
     }
     return self;
 }
@@ -71,55 +71,8 @@
     _indexLabel = indexLabel;
     [self addSubview:indexLabel];
     
-    // 2.保存按钮
-    UIButton *saveButton = [[UIButton alloc] init];
-    [saveButton setTitle:@"保存" forState:UIControlStateNormal];
-    [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    saveButton.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.90f];
-    saveButton.layer.cornerRadius = 5;
-    saveButton.clipsToBounds = YES;
-    [saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
-    _saveButton = saveButton;
-    [self addSubview:saveButton];
 }
 
-- (void)saveImage
-{
-    int index = _scrollView.contentOffset.x / _scrollView.bounds.size.width;
-    UIImageView *currentImageView = _scrollView.subviews[index];
-    
-    UIImageWriteToSavedPhotosAlbum(currentImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-    
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] init];
-    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    indicator.center = self.center;
-    _indicatorView = indicator;
-    [[UIApplication sharedApplication].keyWindow addSubview:indicator];
-    [indicator startAnimating];
-}
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
-{
-    [_indicatorView removeFromSuperview];
-    
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.90f];
-    label.layer.cornerRadius = 5;
-    label.clipsToBounds = YES;
-    label.bounds = CGRectMake(0, 0, 150, 30);
-    label.center = self.center;
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:17];
-    [[UIApplication sharedApplication].keyWindow addSubview:label];
-    [[UIApplication sharedApplication].keyWindow bringSubviewToFront:label];
-    if (error) {
-        label.text = SDPhotoBrowserSaveImageFailText;
-    }   else {
-        label.text = SDPhotoBrowserSaveImageSuccessText;
-    }
-    [label performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1.0];
-}
 
 - (void)setupScrollView
 {
@@ -131,10 +84,10 @@
     [self addSubview:_scrollView];
     
     for (int i = 0; i < self.imageCount; i++) {
-        SDBrowserImageView *imageView = [[SDBrowserImageView alloc] init];
+        LEBrowserImageView *imageView = [[LEBrowserImageView alloc] init];
         imageView.tag = i;
 
-        // 单击图片
+        // 单击退出图片
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoClick:)];
         
         // 双击放大图片
@@ -155,7 +108,7 @@
 // 加载图片
 - (void)setupImageOfImageViewForIndex:(NSInteger)index
 {
-    SDBrowserImageView *imageView = _scrollView.subviews[index];
+    LEBrowserImageView *imageView = _scrollView.subviews[index];
     self.currentImageIndex = index;
     if (imageView.hasLoadedImage) return;
     if ([self highQualityImageURLForIndex:index]) {
@@ -166,12 +119,13 @@
     imageView.hasLoadedImage = YES;
 }
 
+//点击退出放大图片
 - (void)photoClick:(UITapGestureRecognizer *)recognizer
 {
     _scrollView.hidden = YES;
     _willDisappear = YES;
     
-    SDBrowserImageView *currentImageView = (SDBrowserImageView *)recognizer.view;
+    LEBrowserImageView *currentImageView = (LEBrowserImageView *)recognizer.view;
     NSInteger currentIndex = currentImageView.tag;
     
     UIView *sourceView = self.sourceImagesContainerView.subviews[currentIndex];
@@ -192,9 +146,9 @@
     
     [self addSubview:tempView];
 
-    _saveButton.hidden = YES;
+    //_saveButton.hidden = YES;
     
-    [UIView animateWithDuration:SDPhotoBrowserHideImageAnimationDuration animations:^{
+    [UIView animateWithDuration:LEPhotoBrowserHideImageAnimationDuration animations:^{
         tempView.frame = targetTemp;
         self.backgroundColor = [UIColor clearColor];
         _indexLabel.alpha = 0.1;
@@ -205,7 +159,7 @@
 
 - (void)imageViewDoubleTaped:(UITapGestureRecognizer *)recognizer
 {
-    SDBrowserImageView *imageView = (SDBrowserImageView *)recognizer.view;
+    LEBrowserImageView *imageView = (LEBrowserImageView *)recognizer.view;
     CGFloat scale;
     if (imageView.isScaled) {
         scale = 1.0;
@@ -213,7 +167,7 @@
         scale = 2.0;
     }
     
-    SDBrowserImageView *view = (SDBrowserImageView *)recognizer.view;
+    LEBrowserImageView *view = (LEBrowserImageView *)recognizer.view;
 
     [view doubleTapToZommWithScale:scale];
 }
@@ -223,19 +177,19 @@
     [super layoutSubviews];
     
     CGRect rect = self.bounds;
-    rect.size.width += SDPhotoBrowserImageViewMargin * 2;
+    rect.size.width += LEPhotoBrowserImageViewMargin * 2;
     
     _scrollView.bounds = rect;
     _scrollView.center = self.center;
     
     CGFloat y = 0;
-    CGFloat w = _scrollView.frame.size.width - SDPhotoBrowserImageViewMargin * 2;
+    CGFloat w = _scrollView.frame.size.width - LEPhotoBrowserImageViewMargin * 2;
     CGFloat h = _scrollView.frame.size.height;
     
     
     
-    [_scrollView.subviews enumerateObjectsUsingBlock:^(SDBrowserImageView *obj, NSUInteger idx, BOOL *stop) {
-        CGFloat x = SDPhotoBrowserImageViewMargin + idx * (SDPhotoBrowserImageViewMargin * 2 + w);
+    [_scrollView.subviews enumerateObjectsUsingBlock:^(LEBrowserImageView *obj, NSUInteger idx, BOOL *stop) {
+        CGFloat x = LEPhotoBrowserImageViewMargin + idx * (LEPhotoBrowserImageViewMargin * 2 + w);
         obj.frame = CGRectMake(x, y, w, h);
     }];
     
@@ -247,8 +201,8 @@
         [self showFirstImage];
     }
     
-    _indexLabel.center = CGPointMake(self.bounds.size.width * 0.5, 35);
-    _saveButton.frame = CGRectMake(30, self.bounds.size.height - 70, 50, 25);
+    _indexLabel.center = CGPointMake(self.bounds.size.width * 0.5, 50);
+//    _saveButton.frame = CGRectMake(30, self.bounds.size.height - 300, 50, 25);
 }
 
 - (void)show
@@ -263,31 +217,32 @@
 {
     if ([keyPath isEqualToString:@"frame"]) {
         self.frame = object.bounds;
-        SDBrowserImageView *currentImageView = _scrollView.subviews[_currentImageIndex];
-        if ([currentImageView isKindOfClass:[SDBrowserImageView class]]) {
+        LEBrowserImageView *currentImageView = _scrollView.subviews[_currentImageIndex];
+        if ([currentImageView isKindOfClass:[LEBrowserImageView class]]) {
             [currentImageView clear];
         }
     }
 }
 
+#pragma mark -展示点击的那张图片
 - (void)showFirstImage
 {
     UIView *sourceView = self.sourceImagesContainerView.subviews[self.currentImageIndex];
     CGRect rect = [self.sourceImagesContainerView convertRect:sourceView.frame toView:self];
-    
+
     UIImageView *tempView = [[UIImageView alloc] init];
     tempView.image = [self placeholderImageForIndex:self.currentImageIndex];
-    
+
     [self addSubview:tempView];
-    
+
     CGRect targetTemp = [_scrollView.subviews[self.currentImageIndex] bounds];
-    
+
     tempView.frame = rect;
     tempView.contentMode = [_scrollView.subviews[self.currentImageIndex] contentMode];
     _scrollView.hidden = YES;
-    
-    
-    [UIView animateWithDuration:SDPhotoBrowserShowImageAnimationDuration animations:^{
+
+
+    [UIView animateWithDuration:LEPhotoBrowserShowImageAnimationDuration animations:^{
         tempView.center = self.center;
         tempView.bounds = (CGRect){CGPointZero, targetTemp.size};
     } completion:^(BOOL finished) {
@@ -314,6 +269,7 @@
 }
 
 #pragma mark - scrollview代理方法
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     int index = (scrollView.contentOffset.x + _scrollView.bounds.size.width * 0.5) / _scrollView.bounds.size.width;
@@ -322,7 +278,7 @@
     CGFloat margin = 150;
     CGFloat x = scrollView.contentOffset.x;
     if ((x - index * self.bounds.size.width) > margin || (x - index * self.bounds.size.width) < - margin) {
-        SDBrowserImageView *imageView = _scrollView.subviews[index];
+        LEBrowserImageView *imageView = _scrollView.subviews[index];
         if (imageView.isScaled) {
             [UIView animateWithDuration:0.5 animations:^{
                 imageView.transform = CGAffineTransformIdentity;

@@ -12,6 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LEComment : NSObject
 
+@property (nonatomic, copy) NSString *firstName;
+@property (nonatomic, copy) NSString *secondName;
+@property (nonatomic, copy) NSString *comment;
+@property (nonatomic, copy) NSArray *commentArray;
+
+
+-(instancetype) initWithArray:(NSArray *)array;
++(instancetype) commentWithArray:(NSArray *)array;
 @end
 
 NS_ASSUME_NONNULL_END

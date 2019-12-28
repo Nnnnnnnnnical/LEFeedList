@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LEPictureView : UIView
+@property (nonatomic, strong) NSMutableArray *picPathStringsArray;
+@property (nonatomic, assign, readonly) CGRect picF;
 
 @end
 

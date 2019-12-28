@@ -9,13 +9,24 @@
 /* Begin PBXBuildFile section */
 		CAAC838E23B3166B00787AB2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC838D23B3166B00787AB2 /* AppDelegate.m */; };
 		CAAC839123B3166B00787AB2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC839023B3166B00787AB2 /* SceneDelegate.m */; };
-		CAAC839423B3166B00787AB2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC839323B3166B00787AB2 /* ViewController.m */; };
 		CAAC839723B3166B00787AB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAAC839523B3166B00787AB2 /* Main.storyboard */; };
 		CAAC839923B3166C00787AB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAAC839823B3166C00787AB2 /* Assets.xcassets */; };
 		CAAC839C23B3166C00787AB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAAC839A23B3166C00787AB2 /* LaunchScreen.storyboard */; };
 		CAAC839F23B3166C00787AB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC839E23B3166C00787AB2 /* main.m */; };
 		CAAC83A923B3166C00787AB2 /* FeedListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC83A823B3166C00787AB2 /* FeedListTests.m */; };
 		CAAC83B423B3166C00787AB2 /* FeedListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC83B323B3166C00787AB2 /* FeedListUITests.m */; };
+		CAAC83CA23B319F400787AB2 /* LEQZoneTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC83C923B319F400787AB2 /* LEQZoneTableViewController.m */; };
+		CAAC83CD23B31B0000787AB2 /* LEQZoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAC83CC23B31B0000787AB2 /* LEQZoneTableViewCell.m */; };
+		CAC80CD823B340CA00F53300 /* zoom.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAC80CD723B340CA00F53300 /* zoom.plist */; };
+		CAC80CE023B34C5300F53300 /* LEQZone.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC80CDF23B34C5300F53300 /* LEQZone.m */; };
+		CAC80CE323B34DB500F53300 /* LEQZoneFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC80CE223B34DB500F53300 /* LEQZoneFrame.m */; };
+		CAC80CE623B3529600F53300 /* NSString+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC80CE523B3529600F53300 /* NSString+Tools.m */; };
+		CAC80CEF23B4586E00F53300 /* LEPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC80CEE23B4586E00F53300 /* LEPictureView.m */; };
+		CAC80CF223B4CF7D00F53300 /* LEComment.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC80CF123B4CF7D00F53300 /* LEComment.m */; };
+		CAC80CF523B4D13A00F53300 /* LECommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC80CF423B4D13A00F53300 /* LECommentView.m */; };
+		CAC80CF723B4D27B00F53300 /* comment.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAC80CF623B4D27B00F53300 /* comment.plist */; };
+		CAD1EBBE23B6FB7E00185B69 /* LEBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD1EBB723B6FB7D00185B69 /* LEBrowserImageView.m */; };
+		CAD1EBBF23B6FB7E00185B69 /* LEPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD1EBB923B6FB7E00185B69 /* LEPhotoBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +52,6 @@
 		CAAC838D23B3166B00787AB2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CAAC838F23B3166B00787AB2 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		CAAC839023B3166B00787AB2 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		CAAC839223B3166B00787AB2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CAAC839323B3166B00787AB2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CAAC839623B3166B00787AB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAAC839823B3166C00787AB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAAC839B23B3166C00787AB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +63,40 @@
 		CAAC83AF23B3166C00787AB2 /* FeedListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAAC83B323B3166C00787AB2 /* FeedListUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedListUITests.m; sourceTree = "<group>"; };
 		CAAC83B523B3166C00787AB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAAC83C823B319F400787AB2 /* LEQZoneTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LEQZoneTableViewController.h; sourceTree = "<group>"; };
+		CAAC83C923B319F400787AB2 /* LEQZoneTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LEQZoneTableViewController.m; sourceTree = "<group>"; };
+		CAAC83CB23B31B0000787AB2 /* LEQZoneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LEQZoneTableViewCell.h; sourceTree = "<group>"; };
+		CAAC83CC23B31B0000787AB2 /* LEQZoneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LEQZoneTableViewCell.m; sourceTree = "<group>"; };
+		CAAC83D223B335BF00787AB2 /* 4934348604.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4934348604.jpeg; sourceTree = "<group>"; };
+		CAAC83D323B335BF00787AB2 /* 926680527.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 926680527.jpeg; sourceTree = "<group>"; };
+		CAAC83D423B335BF00787AB2 /* 3461756566.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3461756566.jpeg; sourceTree = "<group>"; };
+		CAAC83D523B335BF00787AB2 /* 603564546.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 603564546.jpeg; sourceTree = "<group>"; };
+		CAAC83D623B335BF00787AB2 /* 6289891986.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6289891986.jpeg; sourceTree = "<group>"; };
+		CAAC83DA23B335D600787AB2 /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpeg; sourceTree = "<group>"; };
+		CAAC83DB23B335D600787AB2 /* 50.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 50.jpeg; sourceTree = "<group>"; };
+		CAAC83DC23B335D600787AB2 /* 1516159990.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1516159990.jpeg; sourceTree = "<group>"; };
+		CAAC83DD23B335D600787AB2 /* 238221586.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 238221586.jpeg; sourceTree = "<group>"; };
+		CAAC83DE23B335D600787AB2 /* 424324.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 424324.jpeg; sourceTree = "<group>"; };
+		CAAC83DF23B335D600787AB2 /* 7735164184.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7735164184.jpeg; sourceTree = "<group>"; };
+		CAC80CD723B340CA00F53300 /* zoom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zoom.plist; sourceTree = "<group>"; };
+		CAC80CDE23B34C5300F53300 /* LEQZone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LEQZone.h; sourceTree = "<group>"; };
+		CAC80CDF23B34C5300F53300 /* LEQZone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LEQZone.m; sourceTree = "<group>"; };
+		CAC80CE123B34DB500F53300 /* LEQZoneFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LEQZoneFrame.h; sourceTree = "<group>"; };
+		CAC80CE223B34DB500F53300 /* LEQZoneFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LEQZoneFrame.m; sourceTree = "<group>"; };
+		CAC80CE423B3529600F53300 /* NSString+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Tools.h"; sourceTree = "<group>"; };
+		CAC80CE523B3529600F53300 /* NSString+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tools.m"; sourceTree = "<group>"; };
+		CAC80CED23B4586E00F53300 /* LEPictureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LEPictureView.h; sourceTree = "<group>"; };
+		CAC80CEE23B4586E00F53300 /* LEPictureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LEPictureView.m; sourceTree = "<group>"; };
+		CAC80CF023B4CF7D00F53300 /* LEComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LEComment.h; sourceTree = "<group>"; };
+		CAC80CF123B4CF7D00F53300 /* LEComment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LEComment.m; sourceTree = "<group>"; };
+		CAC80CF323B4D13A00F53300 /* LECommentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LECommentView.h; sourceTree = "<group>"; };
+		CAC80CF423B4D13A00F53300 /* LECommentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LECommentView.m; sourceTree = "<group>"; };
+		CAC80CF623B4D27B00F53300 /* comment.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = comment.plist; sourceTree = "<group>"; };
+		CAD1EBB723B6FB7D00185B69 /* LEBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBrowserImageView.m; sourceTree = "<group>"; };
+		CAD1EBB823B6FB7E00185B69 /* LEPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEPhotoBrowser.h; sourceTree = "<group>"; };
+		CAD1EBB923B6FB7E00185B69 /* LEPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEPhotoBrowser.m; sourceTree = "<group>"; };
+		CAD1EBBB23B6FB7E00185B69 /* LEBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBrowserImageView.h; sourceTree = "<group>"; };
+		CAD1EBBC23B6FB7E00185B69 /* LEPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEPhotoBrowserConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,17 +147,13 @@
 		CAAC838B23B3166B00787AB2 /* FeedList */ = {
 			isa = PBXGroup;
 			children = (
-				CAAC838C23B3166B00787AB2 /* AppDelegate.h */,
-				CAAC838D23B3166B00787AB2 /* AppDelegate.m */,
-				CAAC838F23B3166B00787AB2 /* SceneDelegate.h */,
-				CAAC839023B3166B00787AB2 /* SceneDelegate.m */,
-				CAAC839223B3166B00787AB2 /* ViewController.h */,
-				CAAC839323B3166B00787AB2 /* ViewController.m */,
-				CAAC839523B3166B00787AB2 /* Main.storyboard */,
-				CAAC839823B3166C00787AB2 /* Assets.xcassets */,
-				CAAC839A23B3166C00787AB2 /* LaunchScreen.storyboard */,
 				CAAC839D23B3166C00787AB2 /* Info.plist */,
-				CAAC839E23B3166C00787AB2 /* main.m */,
+				CAD1EBB523B6FB6400185B69 /* BrowserImage */,
+				CAAC83D023B3359D00787AB2 /* Supporting File */,
+				CAAC83C423B3168D00787AB2 /* Others */,
+				CAAC83C323B3168700787AB2 /* View */,
+				CAAC83C223B3167E00787AB2 /* Model */,
+				CAAC83C123B3167600787AB2 /* Controller */,
 			);
 			path = FeedList;
 			sourceTree = "<group>";
@@ -135,6 +174,106 @@
 				CAAC83B523B3166C00787AB2 /* Info.plist */,
 			);
 			path = FeedListUITests;
+			sourceTree = "<group>";
+		};
+		CAAC83C123B3167600787AB2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAAC83C823B319F400787AB2 /* LEQZoneTableViewController.h */,
+				CAAC83C923B319F400787AB2 /* LEQZoneTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CAAC83C223B3167E00787AB2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CAC80CDE23B34C5300F53300 /* LEQZone.h */,
+				CAC80CDF23B34C5300F53300 /* LEQZone.m */,
+				CAC80CE123B34DB500F53300 /* LEQZoneFrame.h */,
+				CAC80CE223B34DB500F53300 /* LEQZoneFrame.m */,
+				CAC80CF023B4CF7D00F53300 /* LEComment.h */,
+				CAC80CF123B4CF7D00F53300 /* LEComment.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAAC83C323B3168700787AB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAAC839523B3166B00787AB2 /* Main.storyboard */,
+				CAAC839A23B3166C00787AB2 /* LaunchScreen.storyboard */,
+				CAAC83CB23B31B0000787AB2 /* LEQZoneTableViewCell.h */,
+				CAAC83CC23B31B0000787AB2 /* LEQZoneTableViewCell.m */,
+				CAC80CED23B4586E00F53300 /* LEPictureView.h */,
+				CAC80CEE23B4586E00F53300 /* LEPictureView.m */,
+				CAC80CF323B4D13A00F53300 /* LECommentView.h */,
+				CAC80CF423B4D13A00F53300 /* LECommentView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAAC83C423B3168D00787AB2 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				CAC80CE423B3529600F53300 /* NSString+Tools.h */,
+				CAC80CE523B3529600F53300 /* NSString+Tools.m */,
+				CAAC838F23B3166B00787AB2 /* SceneDelegate.h */,
+				CAAC839023B3166B00787AB2 /* SceneDelegate.m */,
+				CAAC838C23B3166B00787AB2 /* AppDelegate.h */,
+				CAAC838D23B3166B00787AB2 /* AppDelegate.m */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		CAAC83D023B3359D00787AB2 /* Supporting File */ = {
+			isa = PBXGroup;
+			children = (
+				CAAC83D923B335D600787AB2 /* icon */,
+				CAAC839823B3166C00787AB2 /* Assets.xcassets */,
+				CAC80CD723B340CA00F53300 /* zoom.plist */,
+				CAAC839E23B3166C00787AB2 /* main.m */,
+				CAAC83D123B335BF00787AB2 /* image */,
+				CAC80CF623B4D27B00F53300 /* comment.plist */,
+			);
+			path = "Supporting File";
+			sourceTree = "<group>";
+		};
+		CAAC83D123B335BF00787AB2 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				CAAC83D223B335BF00787AB2 /* 4934348604.jpeg */,
+				CAAC83D323B335BF00787AB2 /* 926680527.jpeg */,
+				CAAC83D423B335BF00787AB2 /* 3461756566.jpeg */,
+				CAAC83D523B335BF00787AB2 /* 603564546.jpeg */,
+				CAAC83D623B335BF00787AB2 /* 6289891986.jpeg */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		CAAC83D923B335D600787AB2 /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				CAAC83DA23B335D600787AB2 /* 1.jpeg */,
+				CAAC83DB23B335D600787AB2 /* 50.jpeg */,
+				CAAC83DC23B335D600787AB2 /* 1516159990.jpeg */,
+				CAAC83DD23B335D600787AB2 /* 238221586.jpeg */,
+				CAAC83DE23B335D600787AB2 /* 424324.jpeg */,
+				CAAC83DF23B335D600787AB2 /* 7735164184.jpeg */,
+			);
+			path = icon;
+			sourceTree = "<group>";
+		};
+		CAD1EBB523B6FB6400185B69 /* BrowserImage */ = {
+			isa = PBXGroup;
+			children = (
+				CAD1EBBB23B6FB7E00185B69 /* LEBrowserImageView.h */,
+				CAD1EBB723B6FB7D00185B69 /* LEBrowserImageView.m */,
+				CAD1EBB823B6FB7E00185B69 /* LEPhotoBrowser.h */,
+				CAD1EBB923B6FB7E00185B69 /* LEPhotoBrowser.m */,
+				CAD1EBBC23B6FB7E00185B69 /* LEPhotoBrowserConfig.h */,
+			);
+			path = BrowserImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +338,7 @@
 		CAAC838123B3166B00787AB2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LE;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = leooooli;
 				TargetAttributes = {
@@ -241,8 +381,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAAC839C23B3166C00787AB2 /* LaunchScreen.storyboard in Resources */,
+				CAC80CF723B4D27B00F53300 /* comment.plist in Resources */,
 				CAAC839923B3166C00787AB2 /* Assets.xcassets in Resources */,
 				CAAC839723B3166B00787AB2 /* Main.storyboard in Resources */,
+				CAC80CD823B340CA00F53300 /* zoom.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,10 +409,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAAC839423B3166B00787AB2 /* ViewController.m in Sources */,
+				CAD1EBBE23B6FB7E00185B69 /* LEBrowserImageView.m in Sources */,
+				CAAC83CA23B319F400787AB2 /* LEQZoneTableViewController.m in Sources */,
+				CAD1EBBF23B6FB7E00185B69 /* LEPhotoBrowser.m in Sources */,
+				CAAC83CD23B31B0000787AB2 /* LEQZoneTableViewCell.m in Sources */,
+				CAC80CEF23B4586E00F53300 /* LEPictureView.m in Sources */,
+				CAC80CE323B34DB500F53300 /* LEQZoneFrame.m in Sources */,
 				CAAC838E23B3166B00787AB2 /* AppDelegate.m in Sources */,
 				CAAC839F23B3166C00787AB2 /* main.m in Sources */,
+				CAC80CE023B34C5300F53300 /* LEQZone.m in Sources */,
 				CAAC839123B3166B00787AB2 /* SceneDelegate.m in Sources */,
+				CAC80CE623B3529600F53300 /* NSString+Tools.m in Sources */,
+				CAC80CF223B4CF7D00F53300 /* LEComment.m in Sources */,
+				CAC80CF523B4D13A00F53300 /* LECommentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LEQZone : NSObject
+ 
+@property (nonatomic, copy) NSString *icon;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSDate *time;
+@property (nonatomic, copy) NSMutableArray *picture;
+
+-(instancetype) initWithDict:(NSDictionary *)dict;
++(instancetype) qzoneWithDict:(NSDictionary *)dict;
+
 
 @end
 

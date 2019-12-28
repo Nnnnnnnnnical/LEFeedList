@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LECommentView : UIView
 
+@property (nonatomic, strong) NSMutableArray *commentArray;
+@property (nonatomic, assign, readonly) CGRect commentF;
+
+-(instancetype)initWithCommentArray:(NSMutableArray *)commentArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

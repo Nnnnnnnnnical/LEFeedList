@@ -8,6 +8,27 @@
 
 #import "LEQZone.h"
 
+
 @implementation LEQZone
+
+-(instancetype) initWithDict:(NSDictionary *)dict
+{
+    self = [super init];
+    if(self){
+        self.icon = dict[@"icon"];
+        self.name = dict[@"name"];
+        self.text = dict[@"text"];
+        self.picture = dict[@"picture"];
+        self.time = dict[@"time"];
+//        [self setValuesForKeysWithDictionary:dict];
+    }
+    return self;
+    
+}
++(instancetype) qzoneWithDict:(NSDictionary *)dict
+{
+    
+    return [[self alloc]initWithDict: dict];
+}
 
 @end

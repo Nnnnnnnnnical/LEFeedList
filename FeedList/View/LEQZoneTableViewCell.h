@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class LEQZoneFrame;
+
 @interface LEQZoneTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) LEQZoneFrame * zoneFrame;
+@property (nonatomic, assign) CGRect picF;
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  SDPhotoBrowser.h
+//  LEPhotoBrowser.h
 //  photobrowser
 //
 //  Created by aier on 15-2-3.
@@ -9,28 +9,28 @@
 #import <UIKit/UIKit.h>
 
 
-@class SDButton, SDPhotoBrowser;
+@class LEButton, LEPhotoBrowser;
 
-@protocol SDPhotoBrowserDelegate <NSObject>
+@protocol LEPhotoBrowserDelegate <NSObject>
 
 @required
 
-- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index;
+- (UIImage *)photoBrowser:(LEPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index;
 
 @optional
 
-- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index;
+- (NSURL *)photoBrowser:(LEPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index;
 
 @end
 
 
-@interface SDPhotoBrowser : UIView <UIScrollViewDelegate>
+@interface LEPhotoBrowser : UIView <UIScrollViewDelegate>
 
 @property (nonatomic, weak) UIView *sourceImagesContainerView;
 @property (nonatomic, assign) NSInteger currentImageIndex;
 @property (nonatomic, assign) NSInteger imageCount;
 
-@property (nonatomic, weak) id<SDPhotoBrowserDelegate> delegate;
+@property (nonatomic, weak) id<LEPhotoBrowserDelegate> delegate;
 
 - (void)show;
 

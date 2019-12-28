@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>//Xcode6后，需导入UIKit,CGRect才能识别
+#import <UIKit/UIKit.h>/
 
 
-// 使用分类，可以把常用的方法，不好记的方法都抽取出来，进行归纳总结
-// 随着学习的深入，我们每个人都会建立一大套属于自己的分类库！
 @interface NSString (Tools)
 
 /**

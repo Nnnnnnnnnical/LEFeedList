@@ -10,4 +10,18 @@
 
 @implementation LEComment
 
+-(instancetype) initWithArray:(NSArray *)array
+{
+    self = [super init];
+    if(self){
+        self.commentArray = array;
+    }
+    return self;
+}
+
++(instancetype) commentWithArray:(NSArray *)array;
+{
+    return [[self alloc]initWithArray:array];
+}
+
 @end
