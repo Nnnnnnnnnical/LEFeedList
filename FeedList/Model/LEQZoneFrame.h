@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) CGRect iconF;
 @property (nonatomic, assign, readonly) CGRect nameF;
 @property (nonatomic, assign, readonly) CGRect textF;
+@property (nonatomic, assign, readonly) CGRect moreTextF;
 @property (nonatomic, assign, readonly) CGRect timeF;
 @property (nonatomic, assign, readonly) CGRect pictureF;
 @property (nonatomic, assign, readonly) CGRect likeF;
@@ -28,7 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) CGRect commentTextF;
 @property (nonatomic, assign, readonly) CGRect commentsF;
 
-//@property (no)
 
 /** 行高 */
 @property (nonatomic, assign, readonly) CGFloat cellHeight;
@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *commentArray;
 
 @property (nonatomic, strong) LECommentView *commentView;
+
 
 #pragma mark - 所有的zoneFrame数据数组
 + (NSArray *)zoneFrame;

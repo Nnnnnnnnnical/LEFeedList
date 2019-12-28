@@ -20,6 +20,7 @@
         self.text = dict[@"text"];
         self.picture = dict[@"picture"];
         self.time = dict[@"time"];
+        self.isOpen = NO;
 //        [self setValuesForKeysWithDictionary:dict];
     }
     return self;

@@ -9,15 +9,6 @@
 #import "LEPhotoBrowser.h"
 #import "LEBrowserImageView.h"
 
- 
-//  ============在这里方便配置样式相关设置===========
-
-//                      ||
-//                      ||
-//                      ||
-//                     \\//
-//                      \/
-
 #import "LEPhotoBrowserConfig.h"
 
 //  =============================================

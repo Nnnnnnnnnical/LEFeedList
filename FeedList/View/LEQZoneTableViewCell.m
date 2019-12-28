@@ -12,12 +12,14 @@
 #import "LEPictureView.h"
 #import "LECommentView.h"
 #import "LEComment.h"
+#import "NSString+Tools.h"
 
 @interface LEQZoneTableViewCell()
 
 @property (nonatomic, strong)UIImageView *iconView;
 @property (nonatomic, strong)UILabel *nameView;
 @property (nonatomic, strong)UILabel *textView;
+@property (nonatomic, strong)UIButton *moreButton;
 @property (nonatomic, strong)UILabel *timeView;
 @property (nonatomic, strong)LEPictureView *pictureView;
 @property (nonatomic, strong)UIImageView *likeView;
@@ -27,6 +29,9 @@
 @property (nonatomic, strong)LECommentView  *commentsView;
 
 @property (nonatomic, assign)CGRect commentF;
+
+
+
 @end
 
 
@@ -41,6 +46,8 @@
 
 {
     LEPictureView *_pictureContainer;
+    CGFloat maxTextHeight;
+    Boolean isOpen;
 }
 
 
@@ -66,8 +73,17 @@
     _textView = [[UILabel alloc]init];
     _textView.font = kTextFont;
     _textView.numberOfLines = 0;
+    NSDictionary *textDict = @{NSFontAttributeName: kTextFont};
+    CGRect temp = [@"abc" textRectWithSize:CGSizeMake(1, MAXFLOAT) attributes:textDict];
+    maxTextHeight = temp.size.height;
     [self.contentView addSubview:_textView];
     
+    _moreButton = [[UIButton alloc]init];
+    _moreButton.titleLabel.font  = kNameFont;
+    [_moreButton setTitleColor:[UIColor colorWithRed:92/255.0 green:140/255.0 blue:193/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [_moreButton addTarget:self action:@selector(moreButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_moreButton];
+
     _timeView = [[UILabel alloc]init];
     _timeView.font = kTimeFont;
     _timeView.textColor = [UIColor grayColor];
@@ -139,6 +155,24 @@
     //正文
     self.textView.text = zone.text;
     
+    //是否显示正文
+    NSDictionary *textDict = @{NSFontAttributeName: kTextFont};
+    CGFloat maxW = [[UIScreen mainScreen]bounds].size.width-10-5;
+    CGRect textFrame = [self.zoneFrame.zone.text textRectWithSize:CGSizeMake(maxW, MAXFLOAT) attributes:textDict];
+    if (textFrame.size.height > maxTextHeight) {
+        self.moreButton.hidden = NO;
+        if(zone.isOpen){
+            _textView.numberOfLines = 0;
+            [self.moreButton setTitle:@"收起" forState:UIControlStateNormal];
+        }else{
+            _textView.numberOfLines = 3;
+            [self.moreButton setTitle:@"全文" forState:UIControlStateNormal];
+        }
+        
+    }else{
+        self.moreButton.hidden = YES;
+    }
+    
     //评论
     self.commentImageView.image = [UIImage imageNamed:@"toolbar_icon_comment"];
     
@@ -171,10 +205,10 @@
     // 正文
     self.textView.frame = self.zoneFrame.textF;
     
-//    // 配图
-//    if (self.zoneFrame.zone.picture.count > 0) {
-//        self.pictureView.frame = self.zoneFrame.pictureF;
-//    }
+    //是否显示正文
+    self.moreButton.frame = self.zoneFrame.moreTextF;
+    
+    //配图
     self.pictureView.frame = self.zoneFrame.pictureF;
     
     //评论
@@ -191,6 +225,16 @@
     
     self.commentsView.frame = self.zoneFrame.commentsF;
 
+}
+
+-(void)moreButtonClicked{
+    LEQZone *zone = self.zoneFrame.zone;
+    zone.isOpen = !self.zoneFrame.zone.isOpen;
+    _zoneFrame.zone = zone;
+    if (self.moreButtonClickedBlock) {
+        self.moreButtonClickedBlock(self.indexPath);
+    }
+    
 }
 
 

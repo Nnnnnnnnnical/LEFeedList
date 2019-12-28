@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
+@property (nonatomic, copy) void (^moreButtonClickedBlock)(NSIndexPath *indexPath);
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @end
 
 NS_ASSUME_NONNULL_END

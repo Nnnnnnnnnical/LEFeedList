@@ -61,6 +61,14 @@ static NSString *ID = @"zone";
         cell.zoneFrame = zoneFrame;
     }
     
+    cell.indexPath = indexPath;
+    if (!cell.moreButtonClickedBlock) {
+        [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }];
+        
+    }
+    
     return cell;
 }
 

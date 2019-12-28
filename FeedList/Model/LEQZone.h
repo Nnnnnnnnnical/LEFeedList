@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSDate *time;
 @property (nonatomic, copy) NSMutableArray *picture;
 
+@property (nonatomic, assign) BOOL isOpen;
+
 -(instancetype) initWithDict:(NSDictionary *)dict;
 +(instancetype) qzoneWithDict:(NSDictionary *)dict;
 

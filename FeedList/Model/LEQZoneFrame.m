@@ -58,11 +58,24 @@
     // 正文
     NSDictionary *textDict = @{NSFontAttributeName: kTextFont};
     CGFloat maxW = [[UIScreen mainScreen]bounds].size.width-padding-5;
-    CGRect textFrame = [self.zone.text textRectWithSize:CGSizeMake(maxW, MAXFLOAT) attributes:textDict];
+    CGRect temp = [@"abc" textRectWithSize:CGSizeMake(1, MAXFLOAT) attributes:textDict];
+    CGRect textFrame = CGRectMake(0, 0, 0, 0);
+    if(zone.isOpen == NO) {
+        textFrame = [self.zone.text textRectWithSize:CGSizeMake(maxW, temp.size.height) attributes:textDict];
+    }else{
+        textFrame = [self.zone.text textRectWithSize:CGSizeMake(maxW, MAXFLOAT) attributes:textDict];
+    }
     
     textFrame.origin.x = padding;
     textFrame.origin.y = CGRectGetMaxY(self.iconF) + padding;
     _textF = textFrame;
+    
+    //显示正文
+    CGFloat moreTextX = padding;
+    CGFloat moreTextY = CGRectGetMaxY(_textF);
+    CGFloat moreTextW = 50;
+    CGFloat moreTextH = 30;
+    _moreTextF = CGRectMake(moreTextX, moreTextY, moreTextW, moreTextH);
     
     //转发
     CGFloat repostY = 0;
@@ -76,7 +89,7 @@
         pictureView.picPathStringsArray = zone.picture;
         // 配图
         CGFloat pictureX = padding;
-        CGFloat pictureY = CGRectGetMaxY(textFrame) + padding;
+        CGFloat pictureY = CGRectGetMaxY(_moreTextF) + padding;
         CGFloat pictureW = maxW;
         CGFloat pictureH = CGRectGetMaxY(pictureView.picF);
         _pictureF = CGRectMake(pictureX, pictureY, pictureW, pictureH);
@@ -84,7 +97,7 @@
         repostY = CGRectGetMaxY(_pictureF) + padding;
     
     } else {
-        repostY= CGRectGetMaxY(_textF) + padding;
+        repostY= CGRectGetMaxY(_moreTextF) + padding;
         
     }
     _repostF = CGRectMake(repostX, repostY, repostW, repostH);
