@@ -158,8 +158,16 @@
     NSString *home = NSHomeDirectory();
     NSString *docPath = [home stringByAppendingPathComponent:@"Documents"];
     NSString *filepath = [docPath stringByAppendingPathComponent:@"comment.plist"];
+    
+
     //得到评论信息
-    NSArray *allCommentArray = [NSArray arrayWithContentsOfFile:filepath];
+    NSMutableArray *allCommentArray = [NSMutableArray arrayWithContentsOfFile:filepath];
+    if (allCommentArray == nil) {
+        NSString *commentPath = [[NSBundle mainBundle] pathForResource:@"comment.plist" ofType:nil];
+        allCommentArray = [NSMutableArray arrayWithContentsOfFile:commentPath];
+        [allCommentArray writeToFile:filepath atomically:YES];
+        NSLog(@"1");
+    }
     for(int i = 0;i < array.count;i++){
         //给zone的信息赋值
         NSDictionary *dict = array[i];
