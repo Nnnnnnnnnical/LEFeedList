@@ -49,12 +49,11 @@ static NSString *ID = @"zone";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
     LEQZoneTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
     if(cell == nil){
         cell = [[LEQZoneTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }else{
-        
+        //清除评论区之间相互叠加
         [[cell viewWithTag:100] removeFromSuperview];
         [cell removeFromSuperview];
         LEQZoneFrame *zoneFrame = self.QZoneFrame[indexPath.row];
@@ -66,7 +65,12 @@ static NSString *ID = @"zone";
         [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }];
-        
+    }
+    
+    if (!cell.commentSendBlock) {
+        [cell setCommentSendBlock:^(NSIndexPath *indexPath) {
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }];
     }
     
     return cell;

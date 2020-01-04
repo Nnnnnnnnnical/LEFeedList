@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LEQZone : NSObject
- 
+
+@property (nonatomic, assign) NSInteger id;
 @property (nonatomic, copy) NSString *icon;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *text;

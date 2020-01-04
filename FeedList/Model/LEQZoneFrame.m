@@ -126,14 +126,21 @@
     CGFloat commentsH = 20 * (_commentView.commentArray.count);
     _commentsF = CGRectMake(commentsX,commentsY,commentsW,commentsH);
     
+    CGFloat commentButtonW = 60;
+    
     //评论框
     CGFloat commentTextX = padding;
     CGFloat commentTextY = CGRectGetMaxY(_commentsF)+padding;
-    CGFloat commentTextW = maxW;
+    CGFloat commentTextW = maxW-commentButtonW;
     CGFloat commentTextH = 30;
     _commentTextF = CGRectMake(commentTextX, commentTextY, commentTextW, commentTextH);
     
-    
+    //评论发送按钮
+    CGFloat commentButtonX = CGRectGetMaxX(_commentTextF) + padding;
+    CGFloat commentButtonY = _commentTextF.origin.y;
+    CGFloat commentButtonH = _commentTextF.size.height;
+    commentButtonW = commentButtonW - padding;
+    _commentButtonF = CGRectMake(commentButtonX, commentButtonY, commentButtonW, commentButtonH);
     
     _cellHeight = CGRectGetMaxY(_commentTextF) + padding;
     
@@ -146,22 +153,29 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"zoom.plist" ofType:nil];
     NSArray *array = [NSArray arrayWithContentsOfFile:path];
     NSMutableArray *arrayModel = [NSMutableArray array];
-    
-    //获取评论信息
-    NSString *commentPath = [[NSBundle mainBundle] pathForResource:@"comment.plist" ofType:nil];
-    NSArray *allCommentArray = [NSArray arrayWithContentsOfFile:commentPath];
+
+    // 获得沙盒路径
+    NSString *home = NSHomeDirectory();
+    NSString *docPath = [home stringByAppendingPathComponent:@"Documents"];
+    NSString *filepath = [docPath stringByAppendingPathComponent:@"comment.plist"];
+    //得到评论信息
+    NSArray *allCommentArray = [NSArray arrayWithContentsOfFile:filepath];
     for(int i = 0;i < array.count;i++){
+        //给zone的信息赋值
         NSDictionary *dict = array[i];
-        NSArray *commentArray = allCommentArray[i];
         LEQZone *zone = [LEQZone qzoneWithDict:dict];
-        LEQZoneFrame *zoneFrame = [[LEQZoneFrame alloc] init];
+        
+        //获取评论数组并且赋值
+        NSArray *commentArray = allCommentArray[i];
         LEComment *comment = [LEComment commentWithArray:commentArray];
         LECommentView *commentView = [[LECommentView alloc]initWithCommentArray:comment.commentArray];
+
+        //总体frame赋值
+        LEQZoneFrame *zoneFrame = [[LEQZoneFrame alloc] init];
         zoneFrame.commentView = commentView;
         zoneFrame.zone = zone;
         zoneFrame.commentArray = comment.commentArray;
         
-
         [arrayModel addObject:zoneFrame];
     }
     return arrayModel;

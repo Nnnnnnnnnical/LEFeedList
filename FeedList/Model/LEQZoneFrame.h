@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) CGRect commentF;
 @property (nonatomic, assign, readonly) CGRect repostF;
 @property (nonatomic, assign, readonly) CGRect commentTextF;
+@property (nonatomic, assign, readonly) CGRect commentButtonF;
 @property (nonatomic, assign, readonly) CGRect commentsF;
 
 

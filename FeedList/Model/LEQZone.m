@@ -15,6 +15,7 @@
 {
     self = [super init];
     if(self){
+        self.id = [dict[@"id"] integerValue];
         self.icon = dict[@"icon"];
         self.name = dict[@"name"];
         self.text = dict[@"text"];

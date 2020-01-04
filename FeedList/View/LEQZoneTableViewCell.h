@@ -12,15 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class LEQZoneFrame;
 
-@interface LEQZoneTableViewCell : UITableViewCell
+@interface LEQZoneTableViewCell : UITableViewCell <UITextFieldDelegate>
 
 @property (nonatomic, strong) LEQZoneFrame * zoneFrame;
 @property (nonatomic, assign) CGRect picF;
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
-
+-(void)sendComment;
 @property (nonatomic, copy) void (^moreButtonClickedBlock)(NSIndexPath *indexPath);
 @property (nonatomic, strong) NSIndexPath *indexPath;
+
+@property (nonatomic, copy) void (^commentSendBlock)(NSIndexPath *indexPath);
 @end
 
 NS_ASSUME_NONNULL_END

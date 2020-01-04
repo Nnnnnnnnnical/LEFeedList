@@ -26,6 +26,7 @@
 @property (nonatomic, strong)UIImageView *commentImageView;
 @property (nonatomic, strong)UIImageView *repostView;
 @property (nonatomic, strong)UITextView *commentTextView;
+@property (nonatomic, strong)UIButton *commentButtonView;
 @property (nonatomic, strong)LECommentView  *commentsView;
 
 @property (nonatomic, assign)CGRect commentF;
@@ -101,23 +102,44 @@
     _commentImageView = [[UIImageView alloc]init];
     [self.contentView addSubview:_commentImageView];
     
+    //评论发送按钮
+    _commentButtonView = [[UIButton alloc]init];
+    [_commentButtonView setTitle:@"发送" forState:UIControlStateNormal];
+    [_commentButtonView setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    _commentButtonView.layer.cornerRadius = 5.0;
+    _commentButtonView.backgroundColor = [UIColor colorWithRed:(0)/255.0 green:(122)/255.0 blue:(255)/255.0 alpha:1.0];
+    [_commentButtonView addTarget:self action:@selector(sendComment) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_commentButtonView];
+    
+    
     _commentTextView = [[UITextView alloc]init];
     [_commentTextView setBackgroundColor:[UIColor colorWithRed:(243)/255.0 green:(242)/255.0 blue:(249)/255.0 alpha:1.0]];
     UILabel *placeHolderLabel = [[UILabel alloc] init];
     placeHolderLabel.text = @"评论";
-    placeHolderLabel.numberOfLines = 0;
     placeHolderLabel.textColor = [UIColor lightGrayColor];
     [placeHolderLabel sizeToFit];
     _commentTextView.font = [UIFont systemFontOfSize:13.f];
     placeHolderLabel.font = [UIFont systemFontOfSize:13.f];
     [_commentTextView addSubview:placeHolderLabel];
     [_commentTextView setValue:placeHolderLabel forKey:@"_placeholderLabel"];
+    
+    _commentTextView.returnKeyType = UIReturnKeySend;
+    _commentTextView.delegate = self;
     [self.contentView addSubview:_commentTextView];
     
+    
+    
+//    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+//    [center addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
 
 }
 
+#pragma mark -移除
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 
 #pragma mark -
 -(void)setZoneFrame:(LEQZoneFrame *)zoneFrame
@@ -131,7 +153,7 @@
 }
 
 
-#pragma mark -设置数据
+#pragma mark -设置数据  
 - (void)settingData
 {
     LEQZone *zone = self.zoneFrame.zone;
@@ -224,9 +246,13 @@
     self.commentTextView.frame = self.zoneFrame.commentTextF;
     
     self.commentsView.frame = self.zoneFrame.commentsF;
+    
+    //评论发送按钮
+    self.commentButtonView.frame = self.zoneFrame.commentButtonF;
 
 }
 
+#pragma mark -全文和收起按钮
 -(void)moreButtonClicked{
     LEQZone *zone = self.zoneFrame.zone;
     zone.isOpen = !self.zoneFrame.zone.isOpen;
@@ -237,6 +263,67 @@
     
 }
 
+#pragma mark -发送评论内容
+-(void)sendComment
+{
+    NSString *text = _commentTextView.text;
+    if (text.length == 0) {
+        NSLog(@"1111");
+        
+    }else{
+
+        // 1.获得沙盒根路径
+        NSString *home = NSHomeDirectory();
+        // 2.document路径
+        NSString *docPath = [home stringByAppendingPathComponent:@"Documents"];
+        // 3.文件路径
+        NSString *filepath = [docPath stringByAppendingPathComponent:@"comment.plist"];
+        //创建数据字典
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+        [dic setValue:@"leooooli" forKey:@"firstName"];
+        [dic setValue:_zoneFrame.zone.name forKey:@"secondName"];
+        [dic setValue:text forKey:@"comment"];
+
+        NSMutableArray *res = [NSMutableArray arrayWithContentsOfFile:filepath];
+        [res[_zoneFrame.zone.id-1] addObject:dic];
+        
+        //将数据写入到文件中
+        [res writeToFile:filepath atomically:YES];
+        
+        LEComment *comment = [LEComment commentWithArray:res[_zoneFrame.zone.id-1]];
+        LECommentView *commentView = [[LECommentView alloc]initWithCommentArray:comment.commentArray];
+        _zoneFrame.commentView = commentView;
+        _zoneFrame.commentArray = comment.commentArray;
+        _zoneFrame.zone = _zoneFrame.zone;
+        _commentTextView.text = @"";
+        
+        if (self.commentSendBlock) {
+            self.commentSendBlock(self.indexPath);
+        }
+    }
+    
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [_commentTextView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (![_commentTextView isExclusiveTouch]) {
+        [_commentTextView resignFirstResponder];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self sendComment];
+    NSLog(@"11");
+    return YES;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

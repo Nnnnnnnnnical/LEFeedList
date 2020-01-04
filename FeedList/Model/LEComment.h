@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LEComment : NSObject
+@interface LEComment : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *secondName;
